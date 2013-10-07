@@ -1,0 +1,20 @@
+.party_form{style: "float: left"}
+  .well
+    %label
+      Party title:
+    %input{ "ng-model" => "party.title", type: 'text'}
+    %br
+    %label Date:
+    {{ party.date | date:'fullDate' }}
+    %button.btn{ "ng-click" => "showDatepicker()"}
+      %i.icon-calendar
+    %div{type: 'text', "ui-date" => "", "ng-model" => "party.date", "ui-date-format" => "DD, d MM, yy", id: 'datepicker', 'ui-date' => "dateOptions", "ng-show" => "revealDatepicker"}
+    %label
+      Party location:
+    %input{ "ng-model" => "party.location", type: 'text'}
+      %button.btn{ "ng-click" => "updatePosition()"}
+        %i.icon-refresh
+
+.well{style: "height: 250px; width: 400px; float: left"}
+  %div{ 'party-map' => "", id: 'party-map'}
+

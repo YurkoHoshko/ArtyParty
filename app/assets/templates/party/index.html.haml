@@ -1,0 +1,22 @@
+%h3 ArtyGeek Parties
+%table.table.table-striped
+  %thead
+    %th Party title
+    %th Party date
+    %th Party location
+  %tr{ "ng-repeat" => "party in parties" }
+    %td {{party.title}}
+    %td {{party.date}}
+    %td {{party.location}}
+    %td
+      %a.btn.btn-small.btn-warning{"ng-click" => "editParty(party.id)"}
+        Edit
+      %a.btn.btn-small.btn-danger{"ng-click" => "deleteParty(party.id)"}
+        Delete
+
+%back-button{back: 'back'}
+%a.btn.btn-primary{ "ng-click" => "createNewParty()" }
+  Add new party
+
+
+

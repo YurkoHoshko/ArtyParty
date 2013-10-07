@@ -1,0 +1,13 @@
+%h3 ArtyGeek Guys
+%table.table.table-striped
+  %thead
+    %th Name
+    %th Contacts
+    %th Date of birth
+  %tr{ "ng-repeat" => "user in users" }
+    %td {{user.name}}
+    %td {{user.phone}}
+    %td {{ user.date_of_birth | date: 'fullDate' }}
+
+%back-button{back: 'back'}
+

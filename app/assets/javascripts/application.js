@@ -12,6 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require angular.min
+//= require angular-resource.min
+//= require angular-cookies.min
 //= require twitter/bootstrap
-//= require turbolinks
-//= require_tree .
+//= require angular-date
+//= require_tree ./angular
+
+

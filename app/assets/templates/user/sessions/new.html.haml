@@ -1,0 +1,17 @@
+%div
+  %h1 Login
+.error{"ng-show" => "login_error.message"}
+  %p {{login_error.message}}
+.body
+  %div{"ng-class" => "{error: login_error.errors.email}"}
+    Email:
+    %input{type: 'text', "ng-model" => "login_user.email"}/
+    %div{"ng-show" => "login_error.errors.email"}
+      %div{"ng-repeat" => "field_error in login_error.errors.email"}
+  %div{"ng-class" => "{error: login_error.errors.password}"}
+    Password:
+    %input{"ng-model" => "login_user.password", type: "password"}/
+    %div{"ng-show" => "login_error.errors.password"}
+      %div{"ng-repeat" => "field_error in login_error.errors.password"}
+  %back-button{back: 'back'}
+  %button.btn.btn-primary{"ng-click" => "login()"} Login

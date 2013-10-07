@@ -1,0 +1,33 @@
+.well{style: "float: left; margin: 2% 2%; padding: 2% 2%"}
+  %h3
+    Next birthday
+    %small
+      %a{"ng-click" => "users()"}
+        More guys
+  %p
+    %strong Name of lucky guy:
+    %h4 {{ user.name }}
+  %p
+    %strong When:
+    {{ user.date_of_birth | date: 'MMMM dd' }}
+  %p
+    %strong Congrats!!!
+
+
+
+.well{style: "min-width: 50%; float:left; margin: 2% 2%; padding: 2% 2%"}
+  %h3
+    Next party
+    %small
+      %a{"ng-click" => "parties()"}
+        More parties
+  %p
+    %strong Title:
+    {{ next_party.title }}
+  %p
+    %strong Date:
+    {{next_party.date | date: 'fullDate'}}
+  %p
+    %strong Location:
+    {{next_party.location}}
+  %div{ 'party-map' => "", id: 'party-map'}
