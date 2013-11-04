@@ -25,7 +25,7 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
     password: null
     name: null
     password_confirmation: null
-    date_of_birth: 'Monday, 14 October 1974'
+    date_of_birth: null
     phone: null
 
 
@@ -117,6 +117,7 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
       success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail."
       error_entity: $scope.register_error
       success_path: '/index'
+      success_event: 'SignedIn'
       error_path: '/new_profile'
       success_action: console.log $scope.register_error
 

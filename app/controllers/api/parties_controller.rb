@@ -33,25 +33,25 @@ class Api::PartiesController < ApplicationController
     @party = Party.new(party_params)
 
     if @party.save
-      render json:  'successfully saved'
+      render json:  {message: 'Party was successfully saved', type: 'success'}
     else
-      render json:  'not saved'
+      render json: { message: 'Party was not saved', type: 'fault'}
     end
   end
 
   # PATCH/PUT /parties/1
   def update
     if @party.update(party_params)
-      render json:  'successfully updated'
+      render json:  {message: 'Party was successfully updated', type: 'success'}, status: 200
     else
-      render json:  'not updated'
+      render json:  {message: 'Party was not updated', type: 'fault'}
     end
   end
 
   # DELETE /parties/1
   def destroy
     @party.destroy
-    render json: 'successfully destroyed'
+    render json: {message: 'successfully destroyed', type: 'success'}
   end
 
 

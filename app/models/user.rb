@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  default_scope
+  validates_presence_of :name, :phone, :date_of_birth
 
   def self.upcoming
     self.all.select { |user| user.date_of_birth.yday > Date.today.yday}.first
