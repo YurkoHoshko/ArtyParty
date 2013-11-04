@@ -1,7 +1,19 @@
 App.controller 'HeaderController', ["$rootScope", '$scope', '$location', '$routeParams', 'User',  ($rootScope, $scope, $location, $routeParams, User) ->
 
 
-  $rootScope.current_user = User.current_user(additional: 'current_user')
+  $rootScope.user = User.current_user(
+    {additional: 'current_user'}
+    ,->
+      $scope.current_user = true
+    ,->
+      $scope.current_user = false
+      )
+
+  $scope.$on 'SignedIn',  ->
+    $scope.current_user = true
+
+  $scope.$on 'SignedOut',  ->
+    $scope.current_user = false
 
 
 

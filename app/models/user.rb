@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  default_scope
+
   def self.upcoming
-    upcoming = self.all.select { |user| user.date_of_birth.yday > Date.today.yday}
-    upcoming.first
+    self.all.select { |user| user.date_of_birth.yday > Date.today.yday}.first
+  end
+
+  def self.sorted
+    upcoming = self.all.select { |user| user.date_of_birth.yday >= Date.today.yday}.sort {|x, y| x.date_of_birth.yday <=> y.date_of_birth.yday}
+    next_year = self.all.select { |user| user.date_of_birth.yday < Date.today.yday}.sort {|x, y| x.date_of_birth.yday <=> y.date_of_birth.yday}
+    (upcoming << next_year).flatten
   end
 end

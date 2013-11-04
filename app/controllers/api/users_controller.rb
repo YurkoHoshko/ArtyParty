@@ -10,11 +10,11 @@ class Api::UsersController < ApplicationController
 
   def check_user
     render json: {user: current_user} if current_user
-    render json: '', status: 403 unless current_user
+    render json: 'You should sign in or sign up before continuing', status: 403 unless current_user
   end
 
   def index
-    @users = User.all
+    @users = User.sorted
     render json: @users
   end
 end

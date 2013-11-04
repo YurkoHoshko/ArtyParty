@@ -3,46 +3,51 @@
 .error{"ng-show" => "register_error.message"}
   %p {{register_error.errors}}
 
-.body
+.registration
   %div{"ng-class" => "{error: register_error.errors.email}"}
     Email:
-    %input{"required" => "", type: 'text', "ng-model" => "register_user.email"}/
-    %div{"ng-show" => "register_error.errors.email"}
-      %div{"ng-repeat" => "field_error in register_error.errors.email"}
+    %input.info_input{"required" => "", type: 'text', "ng-model" => "register_user.email"}
+    %span{"ng-show" => "register_error.errors.email"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.email"}
+        %i {{ field_error }}
 
   %div{"ng-class" => "{error: register_error.errors.name}"}
     Name:
-    %input{"required" => "", type: 'text', "ng-model" => "register_user.name"}/
-    %div{"ng-show" => "register_error.errors.name"}
-      %div{"ng-repeat" => "field_error in register_error.errors.name"}
+    %input.info_input{"required" => "", type: 'text', "ng-model" => "register_user.name"}/
+    %span{"ng-show" => "register_error.errors.name"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.name"}
+        %i {{ field_error }}
 
   %div{"ng-class" => "{error: register_error.errors.phone}"}
     Phone:
-    %input{"required" => "", type: 'text', "ng-model" => "register_user.phone"}/
-    %div{"ng-show" => "register_error.errors.phone"}
-      %div{"ng-repeat" => "field_error in register_error.errors.phone"}
+    %input.info_input{"required" => "", type: 'text', "ng-model" => "register_user.phone"}/
+    %span{"ng-show" => "register_error.errors.phone"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.phone"}
+        %i {{ field_error }}
 
-  .date{"ng-class" => "{error: register_error.errors.date_of_birth}"}
+  %div{"ng-class" => "{error: register_error.errors.date_of_birth}"}
     Date of birth:
-    {{register_user.date_of_birth}}
-    %button.btn{ "ng-click" => "showDatepicker()"}
-      %i.icon-calendar
-    %div{"required" => "", type: 'text', "ui-date" => "", "ng-model" => "register_user.date_of_birth", "ui-date-format" => "DD, d MM yy", id: 'datepicker', 'ui-date' => "dateOptions", "ng-show" => "revealDatepicker"}
-
-
-    %div{"ng-show" => "register_error.errors.date_of_birth"}
-      %div{"ng-repeat" => "field_error in register_error.errors.date_of_birth"}
+    %span.info_input
+      {{register_user.date_of_birth}}
+      %button.btn{ "ng-click" => "showDatepicker()"}
+        %i.icon-calendar
+    .date{"required" => "", type: 'text', "ui-date" => "", "ng-model" => "register_user.date_of_birth", "ui-date-format" => "DD, d MM yy", id: 'datepicker', 'ui-date' => "dateOptions", "ng-show" => "revealDatepicker"}
+    %span{"ng-show" => "register_error.errors.date_of_birth"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.date_of_birth"}
+        %i {{ field_error }}
 
   %div{"ng-class" => "{error: register_error.errors.password}"}
     Password:
-    %input{"required" => "", "ng-model" => "register_user.password", type: "password"}/
-    %div{"ng-show" => "register_error.errors.password"}
-      %div{"ng-repeat" => "field_error in register_error.errors.password"}
+    %input.info_input{"required" => "", "ng-model" => "register_user.password", type: "password"}/
+    %span{"ng-show" => "register_error.errors.password"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.password"}
+        %i {{ field_error }}
+
   %div{"ng-class" => "{error: register_error.errors.password_confirmation}"}
     Confirm password:
-    %input{"required" => "", "ng-model" => "register_user.password_confirmation", type: "password"}/
-    %div{"ng-show" => "register_error.errors.password_confirmation"}
-      %div{"ng-repeat" => "field_error in register_error.errors.password_confirmation"}
-
+    %input.info_input{"required" => "", "ng-model" => "register_user.password_confirmation", type: "password"}/
+    %span{"ng-show" => "register_error.errors.password_confirmation"}
+      %span.error{"ng-repeat" => "field_error in register_error.errors.password_confirmation"}
+        %i {{ field_error }}
   %back-button{back: 'back'}
   %button.btn.btn-primary{"ng-click" => "register()"} Register

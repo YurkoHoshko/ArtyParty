@@ -10,6 +10,8 @@ interceptor = ["$location", "$rootScope", "$q", ($location, $rootScope, $q) ->
     if response.status is 401
       $rootScope.$broadcast "event:unauthorized"
       $location.path "/sign_in"
+      $rootScope.error = response.data.error
+
       return response
     $q.reject response
   (promise) ->
@@ -23,9 +25,6 @@ App.config ["$httpProvider", (provider) ->
   provider.responseInterceptors.push interceptor
 
 ]
-
-
-
 
 
 

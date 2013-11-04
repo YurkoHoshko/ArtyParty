@@ -1,5 +1,7 @@
 App.controller 'IndexController', ['$scope', '$location', '$routeParams', 'User', 'Party', ($scope, $location, $routeParams, User, Party ) ->
 
+
+
   date = new Date
   $scope.user = User.next_birthday(additional: 'next_birthday')
 

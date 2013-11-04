@@ -2,12 +2,12 @@
   ArtyGeek-Party
 
 %ul.nav
-  %li{"ng-show" => "current_user.user"}
+  %li{"ng-show" => "current_user"}
     %a{"ng-controller" => "SessionsController",  "ng-click" => "logout()"}
       Sign Out
-  %li{"ng-hide" => "current_user.user"}
+  %li{"ng-hide" => "current_user"}
     %a{ "ng-click" => "signIn()" }
       Sign In
-  %li{"ng-hide" => "current_user.user"}
+  %li{"ng-hide" => "current_user"}
     %a{ "ng-click" => "signUp()" }
       Sign Up

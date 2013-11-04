@@ -52,8 +52,8 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
       success_message: "You have been logged in."
       error_entity: $scope.login_error
       success_path: '/'
-      success_action: $scope.set_current_user()
-
+      success_event: 'SignedIn'
+    #  success_action: $scope.set_current_user()
 
   $scope.logout = ->
     $scope.submit
@@ -62,11 +62,8 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
       success_message: "You have been logged out."
       error_entity: $scope.login_error
       success_path: '/'
+      success_event: 'SignedOut'
       success_action: $scope.unset_current_user()
-
-
-
-
 
   $scope.password_reset = ->
     $scope.submit
@@ -121,6 +118,7 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
       error_entity: $scope.register_error
       success_path: '/index'
       error_path: '/new_profile'
+      success_action: console.log $scope.register_error
 
 
 
@@ -146,29 +144,35 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
       url: parameters.url
       data: parameters.data
     ).success((data, status) ->
-      if status is 201 or status is 204
+      if status is 201 or status is 204 or status is 200
         parameters.error_entity.message = parameters.success_message
         $scope.reset_users()
+        if parameters.success_event
+          console.log parameters.success_event
+          $rootScope.$broadcast parameters.success_event
+        if parameters.success_path
+          $location.path(parameters.success_path)
+        if parameters.success_action
+          success_action
       else
         parameters.error_entity.message = data.error
-      if parameters.success_path
-        $location.path(parameters.success_path)
-      if parameters.success_action
-        success_action
+
+
     ).error (data, status) ->
       if status is 422
         parameters.error_entity.errors = data.errors
+        console.log parameters.error_entity
       else
         parameters.error_entity.message = data.error
       if parameters.error_path
         $location.path(parameters.error_path)
-
 
   $scope.reset_messages = ->
     $scope.login_error.message = null
     $scope.login_error.errors = {}
     $scope.register_error.message = null
     $scope.register_error.errors = {}
+    $scope.error = null
 
   $scope.reset_users = ->
     $scope.login_user.email = null
@@ -177,9 +181,6 @@ App.controller 'SessionsController', [ '$scope', '$http', '$location', '$routePa
     $scope.register_user.password = null
     $scope.register_user.password_confirmation = null
     $scope.register_user.date_of_birth = null
-
-    $scope.$on 'signedIn', ->
-      console.log 'wth'
 
 
 

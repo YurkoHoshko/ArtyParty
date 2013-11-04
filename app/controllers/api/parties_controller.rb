@@ -11,7 +11,7 @@ class Api::PartiesController < ApplicationController
   end
 
   def next_party
-    @party = Party.find(:first, order: 'date ASC')
+    @party = Party.next
     render json: @party
   end
   # GET /parties/1
